@@ -1,0 +1,55 @@
+{% extends 'ohmysport/partials/base.html' %}
+{% block content %}
+  <h1 class="display-3">{{ sport.name }}</h1>
+  <h6>
+    Federation:
+    <span class="text-success">
+      <strong><em>{{ sport.federation }}</em></strong>
+    </span>
+  </h6>
+  <p>{{ sport.description }}</p>
+  <div class="mt-5">
+    <h2 class="fs-4">Teams</h2>
+    <hr>
+    <div class="row">
+      {% for team in sport.team_set.all %}
+        <div class="col-md-3 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="{{ team.image_link }}" alt="Card image cap" height="150">
+            <div class="card-body">
+              <h4><a href="{% url 'team' slug=team.slug %}" style="text-decoration: none" class="text-info">{{ team.name }}</a></h4>
+              <p>{{ team.description|truncatechars:50 }}</p>
+              <p><a href="#" class="btn btn-info text-light">View team</a></p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <h2 class="fs-4 mt-5">All news</h2>
+  <div class="row">
+    {% for post in posts %}
+      <div class="col-md-4 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="{{ post.image_link }}" alt="Card image cap" height="200">
+            <div class="card-body">
+              <h1 class="fs-5"><a href="{% url 'post' post.slug %}" style="text-decoration: none">
+                <strong>{{ post.title }}</strong>
+              </a></h1>
+              <p>{{ post.content|truncatechars:150 }}</p>
+              <p>
+                Teams:
+                {% for team in post.teams.all %}
+                  <span class="text-danger">
+                    <strong><em>
+                      <a href="{% url 'team' slug=team.slug %}" style="text-decoration: none">{{ team }}</a>
+                    </em></strong>
+                  </span>
+                {% endfor %}
+              </p>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+</div>
+{% endblock %}

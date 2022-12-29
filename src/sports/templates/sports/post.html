@@ -1,0 +1,20 @@
+{% extends 'ohmysport/partials/base.html' %}
+{% block content %}
+  <p>
+    In this post:
+    {% for team in post.teams.all %}
+      <span class="text-info"><a href="{% url 'team' slug=team.slug%}">
+        <strong><em>{{ team }}</em></strong>
+      </a></span>&nbsp;
+    {% endfor %}
+  </p>
+  <h1 class="display-5">{{ post.title }}</h1>
+  <img src="{{ post.image_link }}" style="width: 90%">
+  <h6 class="mb-4 mt-3">
+    Sport: <span class="text-danger">
+    <a href="{% url 'sport-show' slug=sport.slug %}">{{ sport }}</a>
+  </span>
+  </h6>
+  <p>{{ post.content }}</p>
+  <p>Posté le: <em><strong>{{ post.date|date:'j/n/Y'}}</strong></em></p>
+{% endblock %}

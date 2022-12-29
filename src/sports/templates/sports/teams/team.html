@@ -1,0 +1,58 @@
+{% extends 'ohmysport/partials/base.html' %}
+{% block content %}
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <img src="{{ team.image_link }}" class="w-100">
+    </div>
+    <div class="col-md-8">
+      <h1 class="fs-3 mb-4 text-info">{{ team.name }}</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <p>Country: {{ team.country }}</p>
+          <p>City: {{ team.city }}</p>
+          <p>Sport: <a href="#" class="text-danger"><strong><em>{{ team.sport.name }}</em></strong></a></p>
+        </div>
+        <div class="col-md-4">
+          <p>Country: {{ team.president }}</p>
+          <p>City: {{ team.manager }}</p>
+        </div>
+        <div class="col-md-4">
+          <p>Stade: {{ team.name_of_field }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <p>
+      <span class="fs-5"><strong>Description:</strong></span>
+      <span class="fs-5">{{ team.description }}</span>
+    </p>
+  </div>
+  <h1 class="display-6" style="margin-top: 2em">All {{ team.name }} news</h1>
+  <hr>
+  <div class="row">
+    {% for post in team.post_set.all %}
+      <div class="col-md-4 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="{{ post.image_link }}" alt="Card image cap" height="200">
+            <div class="card-body">
+              <h1 class="fs-5"><a href="{% url 'post' post.slug %}" style="text-decoration: none">
+                <strong>{{ post.title }}</strong>
+              </a></h1>
+              <p>{{ post.content|truncatechars:150 }}</p>
+              <p>
+                Teams:
+                {% for team in post.teams.all %}
+                  <span class="text-danger">
+                    <strong><em>
+                      <a href="{% url 'team' slug=team.slug %}" style="text-decoration: none">{{ team }}</a>
+                    </em></strong>
+                  </span>
+                {% endfor %}
+              </p>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
