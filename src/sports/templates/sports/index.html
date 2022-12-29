@@ -1,6 +1,7 @@
 {% extends 'ohmysport/partials/base.html' %}
 {% block content %}
   <h1 class="display-6">All sports news</h1>
+  <a href="{% url 'newpost' %}">Add new post</a>
   <hr>
   <div class="row">
     {% for post in posts %}
@@ -13,7 +14,7 @@
               </a></h1>
               <p>{{ post.content|truncatechars:150 }}</p>
               <p>
-                Teams:
+                Team{{ post.teams.all.count|pluralize }}:
                 {% for team in post.teams.all %}
                   <span class="text-danger">
                     <strong><em>

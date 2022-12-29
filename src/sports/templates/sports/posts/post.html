@@ -12,9 +12,9 @@
   <img src="{{ post.image_link }}" style="width: 90%">
   <h6 class="mb-4 mt-3">
     Sport: <span class="text-danger">
-    <a href="{% url 'sport-show' slug=sport.slug %}">{{ sport }}</a>
+    <a href="{% url 'sport-show' slug=sport.slug %}"><strong><em>{{ sport }}</em></strong></a>
   </span>
   </h6>
-  <p>{{ post.content }}</p>
+  <p>{{ post.content|linebreaks }}</p>
   <p>Posté le: <em><strong>{{ post.date|date:'j/n/Y'}}</strong></em></p>
 {% endblock %}

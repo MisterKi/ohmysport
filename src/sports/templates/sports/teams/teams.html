@@ -10,7 +10,7 @@
           <img class="card-img-top" src="{{ team.image_link }}" alt="Card image cap" height="200">
           <div class="card-body">
             <h6>Sport: <span class="text-danger"><a href="{% url 'sport-show' slug=team.sport.slug %}">{{ team.sport }}</a></span></h6>
-            <h4><a href="#" style="text-decoration: none" class="text-info">{{ team.name }}</a></h4>
+            <h4><a href="{% url 'team' slug=team.slug %}" style="text-decoration: none" class="text-info">{{ team.name }}</a></h4>
             <p>{{ team.description|truncatechars:150 }}</p>
             <p><a href="#" class="btn btn-info text-light">View team</a></p>
           </div>

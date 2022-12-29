@@ -10,7 +10,7 @@
         <div class="col-md-4">
           <p>Country: {{ team.country }}</p>
           <p>City: {{ team.city }}</p>
-          <p>Sport: <a href="#" class="text-danger"><strong><em>{{ team.sport.name }}</em></strong></a></p>
+          <p>Sport: <a href="{% url 'sport-show' slug=team.sport.slug %}" class="text-danger"><strong><em>{{ team.sport.name }}</em></strong></a></p>
         </div>
         <div class="col-md-4">
           <p>Country: {{ team.president }}</p>

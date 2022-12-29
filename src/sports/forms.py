@@ -1,5 +1,5 @@
 from django import forms
-from .models import Team
+from .models import Team, Post
 
 
 class TeamForm(forms.ModelForm):
@@ -11,4 +11,11 @@ class TeamForm(forms.ModelForm):
             "country": "Le pays",
             "name_of_field": "Nom du stade"
         }
+        exclude = ["slug"]
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = "__all__"
         exclude = ["slug"]
