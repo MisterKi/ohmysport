@@ -22,7 +22,7 @@ def sport(request, slug):
 
 # Teams
 def teams(request):
-    teams = Team.objects.all()
+    teams = Team.objects.all().order_by('name')
     return render(request, 'sports/teams/teams.html', context={'teams': teams})
 
 
